@@ -7,21 +7,22 @@ The `<MagicCanvas>` React component takes the following props:
 - `width: number` - the width of the canvas in pixels (required)
 - `height: number` - the height of the canvas in pixels (required)
 - `rendererUrl: string` - the URL for the bundled Renderer JS (see Webpack Loader below for more info) (required)
-- `renderState: Record<string, any>` - an object with state to be passed to the Renderer's `render()` function on each frame (optional)
+- `renderProps: Record<string, any>` - an object with values to be passed to the Renderer's `render()` function on each frame (optional)
+- `initialRenderState: Record<string, any>` - an object with values to initialize the renderer's internal state (optional)
 - `remote: boolean` - a boolean (`false` by default) that indicates whether the canvas contents should be rendered remotely and streamed to the client (optional)
 
 
 ### The Renderer
 
-The Renderer is the part of your application's code that takes a GL context and renders to it. A Renderer must export a `createRenderer(context)` function that takes a WebGL1 Rendering Context. (WebGL2 is not currently supported, but WebGPU support is coming soon!) This `createRenderer(context)` function should return a `render(state)` function that will be called on every frame with whatever state you pass to the MagicCanvas component's `renderState` prop.
+The Renderer is the part of your application's code that takes a GL context and renders to it. A Renderer must have a `createRenderer(context)` function as a default export that takes a WebGL1 Rendering Context. (WebGL2 is not currently supported, but WebGPU support is coming soon!) This `createRenderer(context)` function should return a `render(props)` function that will be called on every frame with the values passed to the MagicCanvas component's `renderProps` prop.
 
 For example:
 
 ```js
-export function createRenderer(context) {
+export default function createRenderer(context) {
   // do some setup with the context
-  return function render(renderState) {
-    // do some rendering with the context + renderState
+  return function render(renderProps) {
+    // do some rendering with the context + renderProps
   }
 }
 ```

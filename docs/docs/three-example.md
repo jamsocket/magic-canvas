@@ -87,9 +87,9 @@ The most compelling feature of MagicCanvas, though, is its ability to render in 
 
 This will connect to the server over WebSocket, upload the renderer, establish a WebRTC connection, and synchronize state between the client and server. 
 
-### Render state
+### Render props
 
-What if we want to render our demo based on some state passed into the MagicCanvas? Let's augment our demo by adding a light that moves around the scene with our mouse.
+What if we want to render our demo based on some props passed into the MagicCanvas? Let's augment our demo by adding a light that moves around the scene with our mouse.
 
 In `box.renderer.js`, before the render function, let's create a light and add it to the scene:
 
@@ -121,7 +121,7 @@ const [lightPosition, setLightPosition] = useState({ x: 0, y: 0 })
   height={800}
   rendererUrl={boxDemoUrl}
   remote={true}
-  renderState={lightPosition}
+  renderProps={lightPosition}
 />
 ```
 
@@ -143,6 +143,6 @@ const onMouseMove = useCallback(({ clientX, clientY, currentTarget }) => {
 </div>
 ```
 
-That's it! Now we should have a MagicCanvas component that passes updates to its `renderState` prop along to the Renderer on each frame. 
+That's it! Now we should have a MagicCanvas component that passes updates to its `renderProps` prop along to the Renderer on each frame.
 
 When rendering locally (with `remote={false}`), these state updates are sent as messages to the WebWorker where the Renderer is running. When rendering remotely (with `remote={true}`), the state updates are sent over WebSockets to the Renderer running in the backend.

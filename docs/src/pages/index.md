@@ -29,7 +29,7 @@ export default function App() {
     <MagicCanvas
       height={800}
       width={1200}
-      renderState={lightPosition}
+      renderProps={lightPosition}
       rendererUrl={boxDemoUrl}
       remote={true}
     />
@@ -37,7 +37,7 @@ export default function App() {
 }
 ```
 
-Then, in `box.render.js`, we need to export a `createRenderer` function which takes a `WebGLRenderingContext` and returns a `render` function to be called on each frame. Notice that the `render()` function gets the value of the `renderState` prop passed to it:
+Then, in `box.render.js`, we need to export a `createRenderer` function which takes a `WebGLRenderingContext` and returns a `render` function to be called on each frame. Notice that the `render()` function gets the value of the `renderProps` prop passed to it:
 
 ```js
 import * as THREE from 'three'
@@ -81,7 +81,7 @@ The above code will render the scene in a NodeJS backend and stream the result t
 - Support compositing locally-rendered content with remotely-rendered content
 - Better shims for browser-dependent code
 - Broader support for JavaScript bundlers and build tools - not just Webpack and Webpack-compatible frameworks (like NextJS)
-- Better serialization format for `renderState` values (other than JSON, which doesn't serialize/deserialize Dates or TypedArrays very well, e.g.)
+- Better serialization format for `renderProps` values (other than JSON, which doesn't serialize/deserialize Dates or TypedArrays very well, e.g.)
 
 
 ## Learn more
