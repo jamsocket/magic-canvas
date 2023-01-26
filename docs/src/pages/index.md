@@ -13,7 +13,7 @@ To the end user, the transition between local and remote is barely perceptible. 
 ## React example
 
 An application needs to do two things to use MagicCanvas:
-- Impelement a *renderer*. This is a self-contained JavaScript bundle that exports a function matching a certain signature.
+- Implement a *renderer*. This is a self-contained JavaScript bundle that exports a function matching a certain signature.
 - Create an instance of the `<MagicCanvas />` component, and pass the renderer into it.
 
 Here’s an example of how to use MagicCanvas in your codebase:
