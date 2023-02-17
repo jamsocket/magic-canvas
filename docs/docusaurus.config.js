@@ -109,6 +109,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      scripts: [{src: 'https://plausible.io/js/script.js', defer: true, 'data-domain': 'canvas.stream'}],
     }),
 };
 
